@@ -241,7 +241,7 @@ def descriptives(merged: pd.DataFrame, outdir: Path) -> Dict[str, pd.DataFrame]:
             for i, v in enumerate(g["risk"]):
                 plt.text(g["decile"][i], float(v), f"{v:.3f}", ha="center", va="bottom", fontsize=8)
             plt.title("Risk-taking across rat-pressure deciles")
-            plt.xlabel("Rat-pressure decile (low → high)")
+            plt.xlabel("Rat-pressure decile (low -> high)")
             plt.ylabel("Mean risk (proportion)")
             plt.tight_layout()
             plt.savefig(outdir / "fig_risk_vs_rat_pressure_deciles.png", dpi=150)
@@ -306,18 +306,18 @@ def logistic_model(merged: pd.DataFrame, outdir: Path) -> str:
     if "time_since_rat_min" in merged.columns: preds.append("time_since_rat_min")
     if "food_availability" in merged.columns:  preds.append("food_availability")
     if "season" in merged.columns:             preds.append("C(season)")
-    # Add only if enough data; otherwise model drops many rows
+    # Add this column only if there is enough data, otherwise model drops many rows that's why added condition of 50 rows 
     if "hours_after_sunset" in merged.columns and merged["hours_after_sunset"].notna().sum() > 50:
         preds.append("hours_after_sunset")
 
     if "risk" not in merged.columns or not preds:
         return "[Model skipped: missing columns]"
 
-    # Build a clean modelling table with just the columns we need, dropping rows with NA
+    # to build a clean modelling table with just the columns we need, dropping rows with NA 
     cols_needed = ["risk"] + [p.replace("C(", "").replace(")", "") for p in preds]
     model_df = merged[[c for c in cols_needed if c in merged.columns]].dropna()
 
-    # Need at least some variation in outcome and enough rows to fit a model
+    # Need at least some variation in outcome and enough rows to fit a model 
     if model_df["risk"].nunique() < 2 or len(model_df) < 50:
         return "[Model skipped: insufficient variation / rows]"
 
@@ -339,7 +339,7 @@ def logistic_model(merged: pd.DataFrame, outdir: Path) -> str:
         return summary_text
 
     except Exception as e:
-        # If the model struggles (e.g., perfect separation), we don’t crash the whole script.
+        # If the model struggles (ie., perfect separation), we don’t crash the whole script.
         return f"[Model failed: {e}]"
 
 # ---------- Step 6: Short text summary ----------
@@ -356,7 +356,7 @@ def write_text_report(outdir: Path, dsc: dict, chi: dict, logit_summary: str) ->
     if "risk_by_time_since_rat_quartile" in dsc:
         tbl2 = dsc["risk_by_time_since_rat_quartile"]
         rates2 = ", ".join(f"{r:.3f}" for r in tbl2["risk_rate"].tolist())
-        lines.append(f"Risk by time-since-rat-arrival quartile (early→late): {rates2}")
+        lines.append(f"Risk by time-since-rat-arrival quartile (early -> late): {rates2}")
 
     # Chi-square results
     lines.append("\nChi-square (High vs Low rat_pressure)")
@@ -374,7 +374,7 @@ def write_text_report(outdir: Path, dsc: dict, chi: dict, logit_summary: str) ->
     path.write_text("\n".join(lines))
     return path
 
-# ---------- Main ----------
+# ---------- Main entry point ----------
 def main():
     outdir = Path(OUTDIR); outdir.mkdir(parents=True, exist_ok=True)
 
@@ -390,7 +390,7 @@ def main():
     # Chi-square test
     chi = chi_square(merged, outdir)
 
-    # Logistic regression (if feasible)
+    # Logistic regression summary
     logit_summary = logistic_model(merged, outdir)
 
     # Text summary
