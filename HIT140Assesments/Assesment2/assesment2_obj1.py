@@ -123,7 +123,7 @@ def align_asof(df1: pd.DataFrame, df2: pd.DataFrame, tolerance_min: int = 15) ->
             merged["seconds_after_rat_arrival"], errors="coerce"
         ) / 60.0
 
-    # 3) Was there any rat arrival in that window at all? Nice binary flag for quick summaries.
+    # 3) Was there any rat arrival in that window at all?  binary flag for quick summaries.
     if "rat_arrival_number" in merged.columns:
         merged["rat_present"] = (
             pd.to_numeric(merged["rat_arrival_number"], errors="coerce") > 0
@@ -261,7 +261,7 @@ def descriptives(merged: pd.DataFrame, outdir: Path) -> Dict[str, pd.DataFrame]:
             plt.savefig(outdir / "fig_rat_pressure_hist.png", dpi=150)
             plt.close()
 
-            
+
     return outputs
 
 # ---------- Step 4: Chi-square (High vs Low rat activity) ----------

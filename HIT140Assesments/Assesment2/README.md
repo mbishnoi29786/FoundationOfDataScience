@@ -1,7 +1,7 @@
 # HIT140 – Foundations of Data Science
 ## Assessment 2 (Objective 1 / Investigation A)
 
-### What we’re doing (in plain English)
+### What we’re doing
 We want to check if **bats behave more cautiously** (take less “risk”) **when rats are active**.  
 If bats treat rats like predators, then during periods of higher rat activity—or right after rats arrive—**bats should avoid risky behaviour more often**.
 
@@ -17,7 +17,7 @@ If bats treat rats like predators, then during periods of higher rat activity—
 
 ---
 
-## Plan of attack (step by step)
+## Step by step plan for analysis
 1) **Load both CSVs** and **parse date/time** (day-first with `"%d/%m/%Y %H:%M"`).  
 2) **Align** each bat landing to the **nearest 30-minute rat window** using a nearest-time join with **±15 min tolerance**.  
 3) **Create features**:
