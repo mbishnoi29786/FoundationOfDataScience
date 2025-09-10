@@ -1,0 +1,30 @@
+HIT140 – Assessment 2 (Investigation A) — Results Summary
+==============================================================
+
+Risk by rat-pressure quartile (low→high): 0.507, 0.543, 0.429, 0.500
+Risk by time-since-rat-arrival quartile (early→late): 0.493, 0.485, 0.482, 0.520
+
+Chi-square (High vs Low rat_pressure)
+  chi2=3.079, p=0.0793, dof=1
+
+Logistic regression (risk ~ rat_pressure + time_since_rat_min + food_availability + C(season) [+ hours_after_sunset if available])
+                         Results: Logit
+=================================================================
+Model:               Logit            Method:           MLE      
+Dependent Variable:  risk             Pseudo R-squared: 0.006    
+Date:                2025-09-10 12:39 AIC:              1261.3746
+No. Observations:    907              BIC:              1290.2355
+Df Model:            5                Log-Likelihood:   -624.69  
+Df Residuals:        901              LL-Null:          -628.64  
+Converged:           1.0000           LLR p-value:      0.16155  
+No. Iterations:      4.0000           Scale:            1.0000   
+-----------------------------------------------------------------
+                    Coef.  Std.Err.    z    P>|z|   [0.025 0.975]
+-----------------------------------------------------------------
+Intercept           0.3267   0.4750  0.6878 0.4916 -0.6044 1.2578
+C(season)[T.1]     -0.3649   0.1902 -1.9188 0.0550 -0.7377 0.0078
+rat_pressure        0.0086   0.2632  0.0327 0.9739 -0.5073 0.5245
+time_since_rat_min  0.0176   0.0170  1.0394 0.2986 -0.0156 0.0509
+food_availability   0.0443   0.1179  0.3753 0.7075 -0.1869 0.2754
+hours_after_sunset -0.0425   0.0387 -1.0987 0.2719 -0.1183 0.0333
+=================================================================
