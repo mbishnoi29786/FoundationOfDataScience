@@ -93,4 +93,3 @@ No extra packages are needed beyond the course standard stack.
 
 ---
 
-If you extend the work—say by swapping in a different Objective 2 factor—follow the same checkpoints so future reviewers can trace the story from raw data through to the final claim.
