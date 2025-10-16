@@ -1,0 +1,29 @@
+Assessment 3 – Objective 2 (Investigation A & B)
+=================================================
+
+Risk rate (proportion of landings marked as risk-taking):
+rat_present
+No rat         <NA>
+Rat present   0.495
+
+Chi-square test (risk × rat_present):
+  chi2=0.000, p=1.0000, dof=0
+
+Chi-square test (risk × season):
+  chi2=3.021, p=0.0822, dof=1
+
+Logistic regression (risk ~ rat_pressure * season + controls):
+  AIC=1250.1, BIC=1303.0
+  See logit_model_summary.txt and logit_odds_ratios.csv for details.
+
+Window-level binomial GLM (risk_prop ~ predictors):
+  See glm_binomial_summary.txt and glm_binomial_or.csv for coefficients.
+
+Linear regression (bat landings per window):
+  R²=0.010  MAE=20.978  RMSE=26.691
+  Baseline (mean) → R²=-0.012, MAE=21.271, RMSE=26.991
+  See linear_model_coefficients.csv for effect sizes.
+
+Interpretation:
+  Logistic and binomial GLM models both highlight: Logit → C(month)[T.1] (↓, OR=0.74, penalised); C(month)[T.2] (↑, OR=2.22, penalised); C(month)[T.3] (↓, OR=0.94, penalised); C(month)[T.4] (↓, OR=0.94, penalised); C(month)[T.5] (↑, OR=1.58, penalised); rat_pressure (↓, OR=1.00, penalised); season (↓, OR=0.98, penalised); rat_pressure:season (↑, OR=1.15, penalised); hours_after_sunset (↓, OR=0.94, penalised); time_since_rat_minutes (↑, OR=1.02, penalised); GLM → rat_pressure (↓, OR=0.01, p<0.05); season (↓, OR=0.46, p<0.05); rat_pressure:season (↑, OR=152.48, p<0.05); hours_after_sunset_x (↓, OR=0.95, p=0.071); time_since_rat_min (↑, OR=1.01, p=0.629).
+  Rat-pressure decile and quartile plots echo the modelled pattern (higher pressure → higher risk) yet adjacent bins show overlapping 95% CIs, so contrasts are indicative rather than definitive.

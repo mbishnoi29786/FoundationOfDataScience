@@ -1,0 +1,24 @@
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                   risk   No. Observations:                  907
+Model:                          Logit   Df Residuals:                      897
+Method:                           MLE   Df Model:                            9
+Date:                Wed, 15 Oct 2025   Pseudo R-squ.:                 0.02318
+Time:                        21:48:46   Log-Likelihood:                -614.06
+converged:                       True   LL-Null:                       -628.64
+Covariance Type:            nonrobust   LLR p-value:                 0.0006114
+==========================================================================================
+                             coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------
+Intercept                  0.0760      0.420      0.181      0.856      -0.747       0.899
+C(month)[T.1]             -0.2977      0.535     -0.557      0.578      -1.346       0.750
+C(month)[T.2]              0.7962      0.453      1.758      0.079      -0.091       1.684
+C(month)[T.3]             -0.0585        nan        nan        nan         nan         nan
+C(month)[T.4]             -0.0644        nan        nan        nan         nan         nan
+C(month)[T.5]              0.4599        nan        nan        nan         nan         nan
+rat_pressure                    0        nan        nan        nan         nan         nan
+season                    -0.0225        nan        nan        nan         nan         nan
+rat_pressure:season        0.1427      0.292      0.489      0.625      -0.429       0.714
+hours_after_sunset        -0.0655      0.029     -2.271      0.023      -0.122      -0.009
+time_since_rat_minutes     0.0217      0.017      1.256      0.209      -0.012       0.056
+==========================================================================================
